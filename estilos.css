@@ -1,0 +1,40 @@
+:root{ 
+    --color-fondo-Titulo: rgb(28, 143, 172);
+    --letraTitulos:'Montserrat', sans-serif;
+}
+
+* {
+    margin: 0px; /*margin establece el margen para los cuatro lados*/
+    padding: 0px; /*padding establece el espacio de relleno*/
+    font-family: var(--letraTitulos);
+}
+.titulo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-fondo-Titulo);
+    color: white;
+    height: 150px;
+}
+
+header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px; /*Espacio entre enlaces*/
+    padding: 15px;
+}
+
+header a {
+    color: #140f0f;
+    font-weight: bold;
+    padding: 8px 18px; /* espacio entre el borde del botón y el texto (8px arriba y abajo)(18px a los lados) */
+    border-radius: 20px; /* redondeado estilo píldora */
+    transition: all 0.3s ease; /* animación suave */
+}
+
+/* Estilo al pasar el mouse */
+header a:hover{
+    background-color: var(--color-fondo-Titulo); 
+    color: white;
+}
