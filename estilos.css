@@ -1,5 +1,6 @@
 :root{ 
     --color-fondo-Titulo: rgb(169, 10, 10);
+    --color-fondo: rgb(199, 199, 184);
     --letraTitulos:'Montserrat', sans-serif;
 }
 
@@ -7,6 +8,7 @@
     margin: 0px; /*margin establece el margen para los cuatro lados*/
     padding: 0px; /*padding establece el espacio de relleno*/
     font-family: var(--letraTitulos);
+    background-color: var(--color-fondo);
 }
 .titulo{
     display: flex;
@@ -54,18 +56,30 @@ header a:hover{
     color: white;
 }
 
-.galeria{
-    
+.logo img {
+    width: 90px;
+    height: auto;
+    background: transparent; /*fondo de la imagen transparente*/ 
 }
 
-img {
-    height: 45%;
-    width: 45%;
+.logo:hover{
+    background-color: transparent; 
+}
+
+.galeria {
+    display: flex;
+    flex-direction: column; /* Coloca los elementos en columna */
+    gap: 40px;             /* Espacio entre imágenes */
+}
+
+.galeria img {
+    height: 400px;
+    width: 600px;
+    padding-left: 80px;
     transition: all 0.3s ease;
 }
-img:hover{
-    height: 50%;
-    width: 50%;
+.galeria img:hover{
+    transform: scale(1.1); /*zoom a la imagen*/
 }
 
 form .form-group {
@@ -77,7 +91,7 @@ form .form-group {
 
 input, select {
   width: 30%;
-  margin-top: 5px;
+  margin-top: 15px;
 }
 
 #genero {

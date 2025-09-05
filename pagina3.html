@@ -1,67 +1,70 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../TP1P2/estilos.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet"> 
-    <title>Hot Wheels</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="..//TP1P2/logoHotwheels.ico">
+  <link rel="stylesheet" href="../TP1P2/estilos.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <title>Hot Wheels</title>
 </head>
+
 <body>
-    <h1 class="titulo">Hot Wheels</h1>
-    <header>
-        <a href="../TP1P2/pagina1.html" style="text-decoration: none;">Inicio  </a>
-        <a href="../TP1P2/pagina2.html" style="text-decoration: none;">Pagina 2  </a>
-        <a href="pagina3.html" style="text-decoration: none;">Pagina 3  </a>
-        <a href="../TP1P2/pagina4.html" style="text-decoration: none;">Pagina 4  </a>
-    </header>
-    <main>
-        <h1>Formulario</h1>
-        <form id="registroForm" novalidate>
-    <div class="form-group">
-      <label for="name">Nombre Completo *</label>
-      <input  id="name" type="text"  required>
-    </div>
-
-    <div class="form-group">
-      <label for="email">Email *</label>
-      <input type="email" id="email" required>
-    </div>
-
-    <div class="form-group">
-      <label for="telefono">Teléfono *</label>
-      <input type="tel" id="telefono" required>
-    </div>
-
-    <div class="form-group">
-      <label for="fechaNacimiento">Fecha de nacimiento *</label>
-      <input type="date" id="fechaNacimiento" required>
-    </div>
-
-    <div id="genero" class="form-group">
-      <label>Género *</label>
-      <div>
-        <label><input type="radio" name="genero" value="Masculino" required> Masculino</label>
-        <label><input type="radio" name="genero" value="Femenino" required> Femenino</label>
+  <h1 class="titulo">Hot Wheels</h1>
+  <header>
+    <a href="../TP1P2/pagina1.html" class="logo">
+      <img src="../TP1P2/logoHotwheels2.jpg" alt="logoHotwheels">
+    </a>
+    <a href="../TP1P2/pagina2.html" style="text-decoration: none;">Modelos </a>
+    <a href="pagina3.html" style="text-decoration: none;">Pagina 3 </a>
+    <a href="../TP1P2/pagina4.html" style="text-decoration: none;">Pagina 4 </a>
+  </header>
+  <main>
+    <h1>Formulario</h1>
+    <form id="registroForm" novalidate>
+      <div class="form-group">
+        <label for="name">Nombre Completo *</label>
+        <input id="name" type="text" required>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="pais">País *</label>
-      <select id="pais" required>
-        <option value="">Seleccione...</option>
-        <option value="Argentina">Argentina</option>
-        <option value="México">México</option>
-        <option value="España">España</option>
-      </select>
-    </div>
+      <div class="form-group">
+        <label for="email">Email *</label>
+        <input type="email" id="email" required>
+      </div>
 
-    <button type="submit">Enviar</button>
-    <p id="formStatus"></p>
-  </form>
+      <div class="form-group">
+        <label for="telefono">Teléfono *</label>
+        <input type="tel" id="telefono" required>
+      </div>
 
-   <script src="..//TP1P2/javascript.js"></script>
+      <div class="form-group">
+        <label for="fechaNacimiento">Fecha de nacimiento *</label>
+        <input type="date" id="fechaNacimiento" required>
+      </div>
+
+      <div id="genero" class="form-group">
+        <label>Género *</label>
+        <div>
+          <label><input type="radio" name="genero" value="Masculino" required> Masculino</label>
+          <label><input type="radio" name="genero" value="Femenino" required> Femenino</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="pais">País *</label>
+        <select id="pais" required>
+          <option value="">Seleccione...</option>
+          <option value="Argentina">Argentina</option>
+          <option value="México">México</option>
+          <option value="España">España</option>
+        </select>
+      </div>
+
+      <button type="submit">Enviar</button>
+    </form>
+
+    <script src="..//TP1P2/javascript.js"></script>
+  </main>
 </body>
-</main>
 </html>
-    
