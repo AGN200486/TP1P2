@@ -1,96 +1,178 @@
-const form = document.getElementById('registroForm');
-const statusEl = document.getElementById('formStatus');
+form = document.getElementById("registroForm");
 
-const validators = {
-  nombre: value => value.trim() !== '' ? '' : 'El nombre es obligatorio.',
-  email: value => /^\S+@\S+\.\S+$/.test(value) ? '' : 'Ingrese un email válido.',
-  telefono: value => /^[0-9]{7,15}$/.test(value) ? '' : 'Teléfono inválido. Solo números (7-15 dígitos).',
-  fechaNacimiento: value => value ? '' : 'La fecha es obligatoria.',
-  genero: value => value ? '' : 'Debe seleccionar un género.',
-  pais: value => value ? '' : 'Seleccione un país.',
+const campos = {
+  name: document.getElementById("name"),
+  email: document.getElementById("email"),
+  telefono: document.getElementById("telefono"),
+  fechaNacimiento: document.getElementById("fechaNacimiento"),
+  genero: form.querySelectorAll("input[name='genero']"),
+  pais: document.getElementById("pais"),
 };
 
-form.addEventListener('input', e => {
-  validarCampo(e.target.name);
-});
 
-form.addEventListener('submit', async e => {
-  e.preventDefault();
-  let valido = true;
+function setError(input, mensaje) { /*cambia el texto de error y lo muestra*/
+  const contenedor = input.closest(".form-group"); /*Busca el contenedor más cercano con la clase .form-group*/
+  const error = contenedor.querySelector(".errorMens")
+  const icono = contenedor.querySelector(".estado-icon");
+  error.textContent = mensaje;
+  error.style.display = "block"; /*por si estaba oculto*/
 
-  // Validar todos los campos
-  for (let campo in validators) {
-    if (validarCampo(campo) !== true) {
-      valido = false;
-    }
-  }
+  input.classList.remove("valid");
+  input.classList.add("invalid");
 
-  if (!valido) {
-    statusEl.textContent = 'Por favor corrija los errores antes de enviar.';
-    statusEl.style.color = 'red';
-    return;
-  }
-
-  // Preparar datos
-  const formData = new FormData(form);
-  const data = {
-    nombre: formData.get('nombre'),
-    email: formData.get('email'),
-    telefono: formData.get('telefono'),
-    fechaNacimiento: formData.get('fechaNacimiento'),
-    genero: formData.get('genero'),
-    pais: formData.get('pais'),
-    intereses: formData.getAll('intereses'),
-    terminos: formData.get('terminos') === 'on'
-  };
-
-  try {
-    const res = await fetch('http://localhost:3000/registro', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    });
-
-    if (res.ok) {
-      const result = await res.json();
-      statusEl.textContent = 'Formulario enviado con éxito.';
-      statusEl.style.color = 'green';
-      form.reset();
-      document.querySelectorAll('.form-group').forEach(g => g.classList.remove('valid', 'invalid'));
-    } else {
-      statusEl.textContent = 'Error al enviar el formulario.';
-      statusEl.style.color = 'red';
-    }
-  } catch (error) {
-    statusEl.textContent = 'Error de red o servidor.';
-    statusEl.style.color = 'red';
-    console.error(error);
-  }
-});
-
-function validarCampo(campo) {
-  let input = form.elements[campo];
-  let formGroup = input.closest('.form-group') || document.querySelector(`[name="${campo}"]`).closest('.form-group');
-  let mensaje = '';
-
-  if (campo === 'intereses') {
-    mensaje = validators[campo](form.querySelectorAll('[name="intereses"]'));
-  } else if (campo === 'terminos') {
-    mensaje = validators[campo](form.elements[campo]);
-  } else {
-    mensaje = validators[campo](form.elements[campo].value);
-  }
-
-  const small = formGroup.querySelector('small');
-  if (mensaje) {
-    formGroup.classList.add('invalid');
-    formGroup.classList.remove('valid');
-    small.textContent = mensaje;
-    return false;
-  } else {
-    formGroup.classList.add('valid');
-    formGroup.classList.remove('invalid');
-    small.textContent = '✓';
-    return true;
+  if (icono) {
+    icono.textContent = "❌";
+    icono.classList.add("invalid");
+    icono.classList.remove("valid");
   }
 }
+
+function clearError(input) { /*Borra el texto de error y lo oculta.*/
+  const contenedor = input.closest(".form-group"); /*Busca el contenedor más cercano con la clase .form-group*/
+  const error = contenedor.querySelector(".errorMens")
+  const icono = contenedor.querySelector(".estado-icon");
+  
+  error.textContent = ""; /*deja el mensaje vacio*/
+  error.style.display = "none"; /*Ocultar el elemento para que no ocupe espacio en el diseño*/
+
+  input.classList.remove("invalid");
+  input.classList.add("valid");
+
+  if (icono) {
+    icono.textContent = "✅";
+    icono.classList.add("valid");
+    icono.classList.remove("invalid");
+  
+}
+}
+
+/*Validaciones individuales*/
+function validarNombre() {
+  const valor = campos.name.value.trim();
+  if (valor.length < 3) {
+    setError(campos.name, "El nombre debe tener al menos 3 caracteres");
+    return false;
+  }
+  clearError(campos.name);
+  return true;
+}
+
+function validarEmail() {
+  const valor = campos.email.value.trim();
+
+  const arrobaPos = valor.indexOf("@");
+  const puntoPos = valor.lastIndexOf(".");
+
+  if (arrobaPos < 1) { /*Que haya un "@" y que no sea el primer carácter*/
+    setError(campos.email, "Email Invalido");
+    return false;
+  }
+  if (puntoPos < arrobaPos + 2) { /*Que exista un "." después del "@" (no inmediatamente, al menos 2 caracteres después)*/
+    setError(campos.email, "Debe haber un punto después del @");
+    return false;
+  }
+  if (puntoPos == valor.length - 1) { /*Que el "." no sea el último carácter*/
+    setError(campos.email, "Email Invalido");
+    return false;
+  }
+
+  clearError(campos.email);
+  return true;
+}
+
+function validarTelefono() {
+  const valor = campos.telefono.value.trim();
+
+  if (valor.length < 7 || valor.length > 15) {
+    setError(campos.telefono, "El teléfono debe tener entre 7 y 15 dígitos");
+    return false;
+  }
+
+  if (isNaN(valor)) { /*Comprobacion si valor es un numero*/
+    setError(campos.telefono, "El teléfono debe tener solo números");
+    return false;
+  }
+
+  clearError(campos.telefono);
+  return true;
+}
+
+
+function validarFechaNacimiento() {
+  const valor = campos.fechaNacimiento.value;
+  if (!valor) {
+    setError(campos.fechaNacimiento, "La fecha de nacimiento es obligatoria");
+    return false;
+  }
+  const fecha = new Date(valor); /*convierte el string de la fecha en un objeto Date de JavaScript*/
+  const hoy = new Date(); /*Guardamos la fecha actual*/
+  const edad = hoy.getFullYear() - fecha.getFullYear(); /*Calculamos la edad haciendo la diferencia de años entre el año actual y el año de nacimiento.*/
+  const mes = hoy.getMonth() - fecha.getMonth(); /*Diferencia de meses entre la fecha actual y el mes de nacimiento (para ajustar la edad si aún no llegó el cumpleaños en el año actual).*/
+
+  let edadReal = edad;
+  /*Si el mes actual es antes del mes de nacimiento o está en el mismo mes pero el día actual es menor que el día de nacimiento*/
+  if (mes < 0 || (mes === 0 && hoy.getDate() < fecha.getDate())) {
+    edadReal--; /*Restamos un año ya que no cumplió años aún este año*/
+  }
+
+  if (edadReal < 18) {
+    setError(campos.fechaNacimiento, "Debes ser mayor de 18 años");
+    return false;
+  }
+  clearError(campos.fechaNacimiento);
+  return true;
+}
+
+function validarGenero() {
+  /* campos.genero es un NodeList con todos los inputs radio de género*/
+  let seleccionado = false;
+  for (let i = 0; i < campos.genero.length; i++) { /* pasa por todas las opciones y si no esta ninguna seleccionada saltara un error*/
+    if (campos.genero[i].checked) {
+      seleccionado = true;
+    }
+  }
+  if (!seleccionado) {
+    setError(campos.genero[0], "Seleccione un género");
+    return false;
+  }
+  clearError(campos.genero[0]);
+  return true;
+}
+
+function validarPais() {
+  if (campos.pais.value === "") {
+    setError(campos.pais, "Seleccione un país");
+    return false;
+  }
+  clearError(campos.pais);
+  return true;
+}
+
+/* Asignar eventos para validación en tiempo real */
+campos.name.addEventListener("input", validarNombre); /*se dispara cada vez que el usuario escribe en un input, se llama a la función de validación correspondiente*/
+campos.email.addEventListener("input", validarEmail);
+campos.telefono.addEventListener("input", validarTelefono);
+campos.fechaNacimiento.addEventListener("change", validarFechaNacimiento); /*se dispara cuando cambia el valor, llama a la función de validación correspondiente*/
+/*No hacemos la validacion en tiempo real del select pais ya que solo saltara mensaje de error al apretar el boton enviar*/
+/*No hacemos la validacion en tiempo real del radio genero ya que solo saltara mensaje de error al apretar el boton enviar*/
+
+/* Validación al enviar*/
+form.addEventListener("submit", e => {
+  e.preventDefault(); /*evita que el formulario se envíe, para que primero podamos validar todos los campos*/
+
+  const valido =
+    validarNombre() &
+    validarEmail() &
+    validarTelefono() &
+    validarFechaNacimiento() &
+    validarGenero() &
+    validarPais();
+  /*La variable valido será True si todas las funciones devuelven True*/
+  if (valido) {
+    alert("Formulario enviado con éxito ✅");
+    form.reset();
+  } else {
+    alert("Por favor, corrija los errores antes de enviar ❌");
+  }
+});
+

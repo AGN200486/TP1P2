@@ -17,7 +17,7 @@
       <img src="../TP1P2/logoHotwheels2.jpg" alt="logoHotwheels">
     </a>
     <a href="../TP1P2/pagina2.html" style="text-decoration: none;">Modelos </a>
-    <a href="pagina3.html" style="text-decoration: none;">Pagina 3 </a>
+    <a href="pagina3.html" style="text-decoration: none;">Formulario </a>
     <a href="../TP1P2/pagina4.html" style="text-decoration: none;">Pagina 4 </a>
   </header>
   <main>
@@ -26,21 +26,29 @@
       <div class="form-group">
         <label for="name">Nombre Completo *</label>
         <input id="name" type="text" required>
+        <span class="estado-icon"></span>
+        <small class="errorMens"></small>
       </div>
 
       <div class="form-group">
         <label for="email">Email *</label>
         <input type="email" id="email" required>
+        <span class="estado-icon"></span>
+        <small class="errorMens"></small>
       </div>
 
       <div class="form-group">
         <label for="telefono">Teléfono *</label>
         <input type="tel" id="telefono" required>
+        <span class="estado-icon"></span>
+        <small class="errorMens"></small>
       </div>
 
       <div class="form-group">
         <label for="fechaNacimiento">Fecha de nacimiento *</label>
         <input type="date" id="fechaNacimiento" required>
+        <span class="estado-icon"></span>
+        <small class="errorMens"></small>
       </div>
 
       <div id="genero" class="form-group">
@@ -49,6 +57,8 @@
           <label><input type="radio" name="genero" value="Masculino" required> Masculino</label>
           <label><input type="radio" name="genero" value="Femenino" required> Femenino</label>
         </div>
+        <span class="estado-icon"></span>
+        <small class="errorMens"></small>
       </div>
 
       <div class="form-group">
@@ -59,12 +69,13 @@
           <option value="México">México</option>
           <option value="España">España</option>
         </select>
+        <span class="estado-icon"></span>
+        <small class="errorMens"></small>
       </div>
 
       <button type="submit">Enviar</button>
     </form>
-
-    <script src="..//TP1P2/javascript.js"></script>
   </main>
+  <script src="..//TP1P2/javascript.js"></script>
 </body>
 </html>
