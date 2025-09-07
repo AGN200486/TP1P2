@@ -10,21 +10,22 @@
     font-family: var(--letraTitulos);
     background-color: var(--color-fondo);
 }
+
 .titulo{
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: var(--color-fondo-Titulo);
     color: white;
-    height: 150px;
-    transform: translateY(100px);
+    height: 100px;
+    transform: translateY(-100px);
     animation: slideup 1s ease-out forwards;
 }
 
 @keyframes slideup {
     0% {
         opacity: 0;
-        transform: translateY(100px);
+        transform: translateY(-100px);
     }
 
     100% {
@@ -66,16 +67,26 @@ header a:hover{
     background-color: transparent; 
 }
 
-.galeria {
+.main-container {
     display: flex;
-    flex-direction: column; /* Coloca los elementos en columna */
-    gap: 40px;             /* Espacio entre imágenes */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box; /* Incluye el padding en el cálculo del tamaño total */
+}
+
+.galeria {
+    display: grid;
+    align-items: center;
+    margin: 80px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px 10px; /* 40px entre filas, 10px entre columnas */
 }
 
 .galeria img {
     height: 400px;
     width: 600px;
-    margin-left: 80px;
     border-radius: 15px;
     transition: all 0.3s ease;
 }
@@ -106,7 +117,17 @@ input, select {
   gap: 5px;
 }
 
-button {
+.btn_container {
+  display: flex;
+  justify-content: flex-end; /* Alinea el botón a la derecha dentro del contenedor */
+  margin-right: 0;           /* Elimina el margen extra */
+  width: 30%;                
+}
+.btn {
+  background-color: rgba(169, 10, 10);
+  border-radius: 15px; /* boton jodidamente fachero */
+  color: white;
+  margin: 1rem 0 0 0;      /* Solo margen arriba si quieres separación */
   padding: 10px 20px;
   font-size: 16px;
 }
