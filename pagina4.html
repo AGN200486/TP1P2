@@ -18,10 +18,42 @@
         <a href="/pagina3.html" style="text-decoration: none;">Formulario  </a>
         <a href="/pagina4.html" style="text-decoration: none;">Pagina 4  </a>
     </header>
-    <main>
-        <h1>Pagina 4</h1>
+<!-- ...API FETCH... -->
+<main>
+    <h1>Pagina 4</h1>
+    <div id="api-status">Cargando imagen...</div>
+    <div id="api-image"></div>
+    <button id="recargar-btn" class="btn">Otra imagen</button>
+</main>
 
-       
-    </main>
+<script>
+async function cargarImagenAuto() {
+    const status = document.getElementById('api-status');
+    const contenedor = document.getElementById('api-image');
+    status.textContent = 'Cargando imagen...';
+    contenedor.innerHTML = '';
+    try {
+        const url = 'https://picsum.photos/600/400?random=automobile' + new Date().getTime();
+        const img = document.createElement('img');
+        img.src = url;
+        img.alt = 'Auto aleatorio';
+        img.style.maxWidth = '100%';
+        img.onload = () => {
+            status.textContent = 'Imagen aleatoria:';
+        };
+        img.onerror = () => {
+            status.textContent = 'No se pudo cargar la imagen.';
+        };
+        contenedor.appendChild(img);
+    } catch (error) {
+        status.textContent = 'Ocurrió un error al cargar la imagen.';
+    }
+}
+
+document.getElementById('recargar-btn').onclick = cargarImagenAuto;
+
+cargarImagenAuto();
+</script>
+<!-- API FETCH -->
 </body>
 </html>
