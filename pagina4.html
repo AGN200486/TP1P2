@@ -1,59 +1,64 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="/images/logoHotwheels.ico">
-    <link rel="stylesheet" href="/styles/estilos.css">
+    <link rel="icon" href="..//TP1P2/images/logoHotwheels.ico">
+    <link rel="stylesheet" href="..//TP1P2/estilos.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <title>Hot Wheels</title>
 </head>
+
 <body>
-    <h1 class="titulo">Hot Wheels</h1>
+    <div class="recuadro">
+        <img src="..//TP1P2/images/recuadro.png" alt="recuadro">
+    </div>
     <header>
-        <a href="/pagina1.html" class="logo">
-            <img src="/images/logoHotwheels2.jpg" alt="logoHotwheels">
+        <a href="..//TP1P2/pagina1.html" class="logo">
+            <img src="..//TP1P2/images/logoHotwheels2.jpg" alt="logoHotwheels">
         </a>
-        <a href="/pagina2.html" style="text-decoration: none;">Modelos  </a>
-        <a href="/pagina3.html" style="text-decoration: none;">Formulario  </a>
-        <a href="/pagina4.html" style="text-decoration: none;">Pagina 4  </a>
+        <a href="..//TP1P2/pagina2.html" style="text-decoration: none;">Modelos </a>
+        <a href="..//TP1P2/pagina3.html" style="text-decoration: none;">Formulario </a>
+        <a href="pagina4.html" style="text-decoration: none;">Pagina 4 </a>
     </header>
-<!-- ...API FETCH... -->
-<main>
-    <h1>Pagina 4</h1>
-    <div id="api-status">Cargando imagen...</div>
-    <div id="api-image"></div>
-    <button id="recargar-btn" class="btn">Otra imagen</button>
-</main>
+    <!-- ...API FETCH... -->
+    <main>
+        <h1>Pagina 4</h1>
+        <div id="api-status">Cargando imagen...</div>
+        <div id="api-image"></div>
+        <button id="recargar-btn" class="btn">Otra imagen</button>
+    </main>
 
-<script>
-async function cargarImagenAuto() {
-    const status = document.getElementById('api-status');
-    const contenedor = document.getElementById('api-image');
-    status.textContent = 'Cargando imagen...';
-    contenedor.innerHTML = '';
-    try {
-        const url = 'https://picsum.photos/600/400?random=automobile' + new Date().getTime();
-        const img = document.createElement('img');
-        img.src = url;
-        img.alt = 'Auto aleatorio';
-        img.style.maxWidth = '100%';
-        img.onload = () => {
-            status.textContent = 'Imagen aleatoria:';
-        };
-        img.onerror = () => {
-            status.textContent = 'No se pudo cargar la imagen.';
-        };
-        contenedor.appendChild(img);
-    } catch (error) {
-        status.textContent = 'Ocurrió un error al cargar la imagen.';
-    }
-}
+    <script>
+        async function cargarImagenAuto() {
+            const status = document.getElementById('api-status');
+            const contenedor = document.getElementById('api-image');
+            status.textContent = 'Cargando imagen...';
+            contenedor.innerHTML = '';
+            try {
+                const url = 'https://picsum.photos/600/400?random=automobile' + new Date().getTime();
+                const img = document.createElement('img');
+                img.src = url;
+                img.alt = 'Auto aleatorio';
+                img.style.maxWidth = '100%';
+                img.onload = () => {
+                    status.textContent = 'Imagen aleatoria:';
+                };
+                img.onerror = () => {
+                    status.textContent = 'No se pudo cargar la imagen.';
+                };
+                contenedor.appendChild(img);
+            } catch (error) {
+                status.textContent = 'Ocurrió un error al cargar la imagen.';
+            }
+        }
 
-document.getElementById('recargar-btn').onclick = cargarImagenAuto;
+        document.getElementById('recargar-btn').onclick = cargarImagenAuto;
 
-cargarImagenAuto();
-</script>
-<!-- API FETCH -->
+        cargarImagenAuto();
+    </script>
+    <!-- API FETCH -->
 </body>
+
 </html>
