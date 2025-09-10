@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="..//TP1P2/images/logoHotwheels.ico">
     <link rel="stylesheet" href="..//TP1P2/estilos.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <title>Hot Wheels</title>
 </head>
+
 <body>
     <div class="recuadro">
         <img src="..//TP1P2/images/recuadro.png" alt="recuadro">
@@ -16,15 +18,40 @@
         <a href="pagina1.html" class="logo">
             <img src="..//TP1P2/images/logoHotwheels2.jpg" alt="logoHotwheels">
         </a>
-        <a href="..//TP1P2/pagina2.html" style="text-decoration: none;">Modelos  </a>
-        <a href="..//TP1P2/pagina3.html" style="text-decoration: none;">Formulario  </a>
-        <a href="..//TP1P2/pagina4.html" style="text-decoration: none;">Pagina 4  </a>
+        <a href="..//TP1P2/pagina2.html" style="text-decoration: none;">Modelos </a>
+        <a href="..//TP1P2/pagina3.html" style="text-decoration: none;">Formulario </a>
+        <a href="..//TP1P2/pagina4.html" style="text-decoration: none;">Pagina 4 </a>
     </header>
     <main class="main-container">
         <h1>Benvenuto!!!</h1>
         <br>
-        <p>Somos Hot Wheels, una empresa dedicada a que tu auto <b>vintage</b> soñado llegue a <b>TUS</b> manos.</p>
+        <p>Somos Hot Wheels, una empresa dedicada a que tu auto <b>clasico</b> soñado llegue a <b>TUS</b> manos.</p>
+
+        <div class="carrusel">
+            <img src="..//TP1P2/images/imgCarrusel/AstonMartinCarrusel1.jpg" class="active" alt="Auto Aston Martin">
+            <img src="..//TP1P2/images/imgCarrusel/dodgeChallengerCarrusel2.jpg" alt="Auto Dodge Challenger">
+            <img src="..//TP1P2/images/imgCarrusel/DodgeChargerCarrusel3.jpg" alt="Auto Dodge Charger">
+            <img src="..//TP1P2/images/imgCarrusel/FordMustangBossCarrusel4.jpg" alt="Auto Ford Mustang">
+        </div>
     </main>
-    
+
+    <script>
+        const imagen = document.querySelectorAll(".carrusel img");
+        let index = 0;
+
+        function MostrarProxImg() {
+            imagen[index].classList.remove("active"); /*Removemos la clase active para poder mostrar la imagen siguiente*/
+            index++; /*incrementa el índice*/
+            if (index == imagen.length) { /* Si index llega a images.length -1 (última), la expresión vuelve a 0*/
+                index = 0;
+            }
+            imagen[index].classList.add("active"); /*asignamos la clase active a la proxima imagen*/
+        }
+
+        // Cambia la imagen cada 4 segundos
+        setInterval(MostrarProxImg, 4000);
+    </script>
+
 </body>
+
 </html>

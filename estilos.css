@@ -1,97 +1,132 @@
-:root{ 
-    --color-fondo-Titulo: rgb(169, 10, 10);
-    --color-fondo: rgb(199, 199, 184);
-    --letraTitulos:'Montserrat', sans-serif;
+:root {
+  --color-fondo-Titulo: rgb(169, 10, 10);
+  --color-fondo: rgb(199, 199, 184);
+  --letraTitulos: 'Montserrat', sans-serif;
 }
 
 * {
-    margin: 0px; /*margin establece el margen para los cuatro lados*/
-    padding: 0px; /*padding establece el espacio de relleno*/
-    font-family: var(--letraTitulos);
-    background-color: var(--color-fondo);
+  margin: 0px;
+  /*margin establece el margen para los cuatro lados*/
+  padding: 0px;
+  /*padding establece el espacio de relleno*/
+  font-family: var(--letraTitulos);
+  background-color: var(--color-fondo);
 }
 
-.recuadro{
-    animation: slideup 1s ease-out forwards;
+.recuadro {
+  animation: slideup 1s ease-out forwards;
 }
 
-.recuadro img{
-    display: flex;
-    height: 180px;
-    width: 100%;
+.recuadro img {
+  display: flex;
+  height: 180px;
+  width: 100%;
 
 }
 
 @keyframes slideup {
-    0% {
-        opacity: 0;
-        transform: translateY(-100px);
-    }
+  0% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
 
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
 }
 
-header{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 30px; /*Espacio entre enlaces*/
-    padding: 15px;
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  /*Espacio entre enlaces*/
+  padding: 15px;
 }
 
 header a {
-    color: #140f0f;
-    font-weight: bold;
-    padding: 8px 18px; /* espacio entre el borde del botón y el texto (8px arriba y abajo)(18px a los lados) */
-    border-radius: 20px; /* redondeado estilo píldora */
-    transition: all 0.3s ease; /* animación suave */
+  color: #140f0f;
+  font-weight: bold;
+  padding: 8px 18px;
+  /* espacio entre el borde del botón y el texto (8px arriba y abajo)(18px a los lados) */
+  border-radius: 20px;
+  /* redondeado estilo píldora */
+  transition: all 0.3s ease;
+  /* animación suave */
 }
 
 /* Estilo al pasar el mouse */
-header a:hover{
-    background-color: var(--color-fondo-Titulo); 
-    color: white;
+header a:hover {
+  background-color: var(--color-fondo-Titulo);
+  color: white;
+}
+
+.carrusel {
+  position: relative; /*Marco de Referencia*/
+  width: 80%; /*El carrusel ocupa el 80% del ancho de la página*/
+  max-width: 800px; /*Ancho maximo por si la pantalla es muy grande*/
+  height: 400px; /*Altura del carrusel*/
+  margin: 40px auto; /*40px de espacio arriba y abajo , y con el auto lo centra de forma automática en el medio de la página*/
+  overflow: hidden; /*Todo lo que se salga del rectángulo del carrusel, queda escondido*/
+  border-radius: 12px; /*Redondeamos esquinas*/
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /*Agregamos una pequeña sombra al rededor del carrusel, asi no queda tan plano*/
+}
+
+.carrusel img {
+  position: absolute;
+  width: 100%; /*ocupan todo el contenedor*/
+  height: 100%;
+  object-fit: cover;
+  opacity: 0; /*invisibles por defecto*/
+  transition: opacity 1s ease-in-out; /*Agregamos un poco de animacino de desvanecimiento a los cambios de opacidad*/
+}
+
+.carrusel img.active {
+  opacity: 1; /*hace visible solo a la imagen activa*/
 }
 
 .logo img {
-    width: 90px;
-    height: auto;
-    background: transparent; /*fondo de la imagen transparente*/
+  width: 90px;
+  height: auto;
+  background: transparent;
+  /*fondo de la imagen transparente*/
 }
 
-.logo:hover{
-    background-color: transparent; 
+.logo:hover {
+  background-color: transparent;
 }
 
 .main-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    box-sizing: border-box; /* Incluye el padding en el cálculo del tamaño total */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+  /* Incluye el padding en el cálculo del tamaño total */
 }
 
 .galeria {
-    display: grid;
-    align-items: center;
-    margin: 80px;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 40px 10px; /* 40px entre filas, 10px entre columnas */
+  display: grid;
+  align-items: center;
+  margin: 80px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px 10px; /* 40px entre filas, 10px entre columnas */
 }
 
 .galeria img {
-    height: 400px;
-    width: 600px;
-    border-radius: 15px;
-    transition: all 0.3s ease;
+  height: 400px;
+  width: 600px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /*Agregamos una pequeña sombra al rededor de las imagenes, asi no queda tan plano*/
+  transition: all 0.3s ease;
 }
-.galeria img:hover{
-    transform: scale(1.1); /*zoom a la imagen*/
+
+.galeria img:hover {
+  transform: scale(1.1);
+  /*zoom a la imagen*/
 }
 
 form .form-group {
@@ -101,7 +136,8 @@ form .form-group {
   position: relative;
 }
 
-input, select {
+input,
+select {
   width: 30%;
   margin-top: 15px;
 }
@@ -111,6 +147,7 @@ input, select {
   align-items: center;
   gap: 20px;
 }
+
 #genero label {
   display: flex;
   align-items: center;
@@ -119,26 +156,36 @@ input, select {
 
 .btn_container {
   display: flex;
-  justify-content: flex-end; /* Alinea el botón a la derecha dentro del contenedor */
-  margin-right: 0;           /* Elimina el margen extra */
-  width: 30%;                
+  justify-content: flex-end;
+  /* Alinea el botón a la derecha dentro del contenedor */
+  margin-right: 0;
+  /* Elimina el margen extra */
+  width: 30%;
 }
+
 .btn {
   background-color: rgba(169, 10, 10);
-  border-radius: 15px; /* boton jodidamente fachero */
+  border-radius: 15px;
+  /* boton jodidamente fachero */
   color: white;
-  margin: 1rem 0 0 0;      /* Solo margen arriba si quieres separación */
+  margin: 1rem 0 0 0;
+  /* Solo margen arriba si quieres separación */
   padding: 10px 20px;
   font-size: 16px;
 }
 
 .estado-icon {
   position: absolute;
-  right: 10px; /*lo coloca a 10px del borde derecho del contenedor*/
-  top: 50%; /*lo coloca a la mitad vertical de su contenedor*/
-  transform: translateY(-50%); /*corrige el posicionamiento vertical para que quede perfectamente centrado respecto al input.*/
-  font-size: 1.2rem; /*tamaño del icono*/
-  display: none; /* oculto por defecto */
+  right: 10px;
+  /*lo coloca a 10px del borde derecho del contenedor*/
+  top: 50%;
+  /*lo coloca a la mitad vertical de su contenedor*/
+  transform: translateY(-50%);
+  /*corrige el posicionamiento vertical para que quede perfectamente centrado respecto al input.*/
+  font-size: 1.2rem;
+  /*tamaño del icono*/
+  display: none;
+  /* oculto por defecto */
 }
 
 input.valid,
@@ -164,5 +211,6 @@ select.invalid {
 .errorMens {
   color: red;
   font-size: 0.9em;
-  display: none; /* por defecto oculto para que no ocupe espacio en el diseño*/
+  display: none;
+  /* por defecto oculto para que no ocupe espacio en el diseño*/
 }
