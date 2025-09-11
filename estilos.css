@@ -109,24 +109,38 @@ header a:hover {
 }
 
 .galeria {
-  display: grid;
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 40px; /* espacio entre cada auto */
   margin: 80px;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 40px 10px; /* 40px entre filas, 10px entre columnas */
 }
 
-.galeria img {
+.item {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* espacio entre imagen y texto */
+}
+
+.item img {
   height: 400px;
   width: 600px;
   border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /*Agregamos una pequeña sombra al rededor de las imagenes, asi no queda tan plano*/
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
 }
 
-.galeria img:hover {
+.item img:hover {
   transform: scale(1.1);
-  /*zoom a la imagen*/
+}
+
+.info h3 {
+  font-size: 20px;
+  color: #0f0f0f;
+}
+
+.info p {
+  font-size: 16px;
+  color: #353434;
 }
 
 form .form-group {
