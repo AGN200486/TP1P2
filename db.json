@@ -1,0 +1,13 @@
+{
+  "usuarios": [
+    {
+      "id": "71ef",
+      "nombre": "Agustin",
+      "email": "vellaagustin04@gmail.com",
+      "telefono": "3416651075",
+      "fechaNacimiento": "2004-06-29",
+      "genero": "Masculino",
+      "pais": "Argentina"
+    }
+  ]
+}

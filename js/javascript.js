@@ -31,7 +31,7 @@ function clearError(input) { /*Borra el texto de error y lo oculta.*/
   const contenedor = input.closest(".form-group"); /*Busca el contenedor más cercano con la clase .form-group*/
   const error = contenedor.querySelector(".errorMens")
   const icono = contenedor.querySelector(".estado-icon");
-  
+
   error.textContent = ""; /*deja el mensaje vacio*/
   error.style.display = "none"; /*Ocultar el elemento para que no ocupe espacio en el diseño*/
 
@@ -42,8 +42,8 @@ function clearError(input) { /*Borra el texto de error y lo oculta.*/
     icono.textContent = "✅";
     icono.classList.add("valid");
     icono.classList.remove("invalid");
-  
-}
+
+  }
 }
 
 /*Validaciones individuales*/
@@ -169,8 +169,31 @@ form.addEventListener("submit", e => {
     validarPais();
   /*La variable valido será True si todas las funciones devuelven True*/
   if (valido) {
-    alert("Formulario enviado con éxito ✅");
-    form.reset();
+    // 1. Crear un objeto con todos los valores del formulario
+    const datosFormulario = {
+      nombre: campos.name.value.trim(),
+      email: campos.email.value.trim(),
+      telefono: campos.telefono.value.trim(),
+      fechaNacimiento: campos.fechaNacimiento.value,
+      genero: form.querySelector('input[name="genero"]:checked')?.value || "",
+      pais: campos.pais.value
+    };
+
+    // 2. Enviar los datos con Fetch a tu API
+    fetch("http://localhost:3000/usuarios", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(datosFormulario)
+    })
+      .then(respuesta => {
+        if (!respuesta.ok) throw new Error("Error en el envío");
+        return respuesta.json();
+      })
+      .then(data => {
+        alert("Formulario enviado con éxito ✅\nID asignado: " + data.id);
+        form.reset(); // limpia el formulario
+      })
+      .catch(() => alert("Ocurrió un error al enviar el formulario ❌"));
   } else {
     alert("Por favor, corrija los errores antes de enviar ❌");
   }
