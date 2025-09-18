@@ -64,27 +64,39 @@ header a:hover {
 }
 
 .carrusel {
-  position: relative; /*Marco de Referencia*/
-  width: 80%; /*El carrusel ocupa el 80% del ancho de la página*/
-  max-width: 800px; /*Ancho maximo por si la pantalla es muy grande*/
-  height: 400px; /*Altura del carrusel*/
-  margin: 40px auto; /*40px de espacio arriba y abajo , y con el auto lo centra de forma automática en el medio de la página*/
-  overflow: hidden; /*Todo lo que se salga del rectángulo del carrusel, queda escondido*/
-  border-radius: 12px; /*Redondeamos esquinas*/
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /*Agregamos una pequeña sombra al rededor del carrusel, asi no queda tan plano*/
+  position: relative;
+  /*Marco de Referencia*/
+  width: 80%;
+  /*El carrusel ocupa el 80% del ancho de la página*/
+  max-width: 800px;
+  /*Ancho maximo por si la pantalla es muy grande*/
+  height: 400px;
+  /*Altura del carrusel*/
+  margin: 40px auto;
+  /*40px de espacio arriba y abajo , y con el auto lo centra de forma automática en el medio de la página*/
+  overflow: hidden;
+  /*Todo lo que se salga del rectángulo del carrusel, queda escondido*/
+  border-radius: 12px;
+  /*Redondeamos esquinas*/
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  /*Agregamos una pequeña sombra al rededor del carrusel, asi no queda tan plano*/
 }
 
 .carrusel img {
   position: absolute;
-  width: 100%; /*ocupan todo el contenedor*/
+  width: 100%;
+  /*ocupan todo el contenedor*/
   height: 100%;
   object-fit: cover;
-  opacity: 0; /*invisibles por defecto*/
-  transition: opacity 1s ease-in-out; /*Agregamos un poco de animacino de desvanecimiento a los cambios de opacidad*/
+  opacity: 0;
+  /*invisibles por defecto*/
+  transition: opacity 1s ease-in-out;
+  /*Agregamos un poco de animacino de desvanecimiento a los cambios de opacidad*/
 }
 
 .carrusel img.active {
-  opacity: 1; /*hace visible solo a la imagen activa*/
+  opacity: 1;
+  /*hace visible solo a la imagen activa*/
 }
 
 .logo img {
@@ -111,14 +123,16 @@ header a:hover {
 .galeria {
   display: flex;
   flex-direction: column;
-  gap: 40px; /* espacio entre cada auto */
+  gap: 40px;
+  /* espacio entre cada auto */
   margin: 80px;
 }
 
 .item {
   display: flex;
   align-items: center;
-  gap: 20px; /* espacio entre imagen y texto */
+  gap: 20px;
+  /* espacio entre imagen y texto */
 }
 
 .item img {
@@ -227,4 +241,119 @@ select.invalid {
   font-size: 0.9em;
   display: none;
   /* por defecto oculto para que no ocupe espacio en el diseño*/
+}
+
+/*Carrito*/
+#carrito {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Mensaje de carrito vacío */
+.agregar-carrito {
+  background-color: var(--color-fondo-Titulo);
+  color: #fff;
+  border: none; /*Sin bordes*/
+  padding: 5px 10px;
+  margin-top: 10px;
+  border-radius: 12px; /*bordes redondeados*/
+  font-size: 0.9rem;
+  cursor: pointer; /*Cambiar a cursor a manito al pasar por encima*/
+  transition: background 0.2s ease; /*Animacion de cambio de color al pasar cursor por encima*/
+}
+
+.agregar-carrito:hover {
+  background-color: rgb(137, 22, 22);
+}
+
+
+#carrito p {
+  text-align: center;
+  font-size: 1.2rem;
+  color: black;
+}
+
+.producto {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  /*Espacio entre productos*/
+  background: rgb(201, 198, 198);
+  padding: 15px;
+  border-radius: 12px;
+  /*Esquinas redondeadas*/
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  /*Agregamos Sombra*/
+}
+
+.producto img {
+  width: 350px;
+  /*Tamaño Imagenes productos*/
+  border-radius: 10px;
+  /*Redondeamos bordes imagenes*/
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  background: transparent;
+  /* evita cubrir con el color de fondo */
+}
+
+.producto h4 {
+  font-size: 1.2rem;
+  color: black;
+}
+
+.producto p {
+  font-size: 1rem;
+  color: rgb(47, 47, 47);
+}
+
+/* Botones + - Eliminar */
+.producto button {
+  background-color: var(--color-fondo-Titulo);
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  margin-top: 6px;
+  margin-right: 5px;
+  border-radius: 6px;
+  /*bordes redondeados*/
+  font-size: 0.9rem;
+  cursor: pointer;
+  /*Cambiar a cursor a manito al pasar por encima*/
+  transition: background 0.2s ease;
+  /*Animacion de cambio de color al pasar cursor por encima*/
+}
+
+.producto button:hover {
+  background-color: rgb(137, 22, 22);
+}
+
+/*El Total*/
+#total {
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.3rem;
+  margin-top: 10px;
+  color: black;
+}
+
+/*El boton Finalizar*/
+#finalizar {
+  display: block;
+  margin: 0 auto;
+  margin-top: 15px;
+  padding: 8px 18px;
+  background: var(--color-fondo-Titulo);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+#finalizar:hover {
+  background: rgb(137, 22, 22);
 }

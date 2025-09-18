@@ -14,51 +14,109 @@
     <div class="recuadro">
         <img src="..//TP1P2/images/recuadro.png" alt="recuadro">
     </div>
+
     <header>
         <a href="..//TP1P2/pagina1.html" class="logo">
             <img src="..//TP1P2/images/logoHotwheels2.jpg" alt="logoHotwheels">
         </a>
         <a href="..//TP1P2/pagina2.html" style="text-decoration: none;">Modelos </a>
         <a href="..//TP1P2/pagina3.html" style="text-decoration: none;">Formulario </a>
-        <a href="pagina4.html" style="text-decoration: none;">Pagina 4 </a>
+        <a href="pagina4.html" style="text-decoration: none;">Carrito </a>
     </header>
-    <!-- ...API FETCH... -->
+
     <main>
-        <h1>Pagina 4</h1>
-        <div id="api-status">Cargando imagen...</div>
-        <div id="api-image"></div>
-        <button id="recargar-btn" class="btn">Otra imagen</button>
+        <div id="carrito"></div>
+        <h3 id="total"></h3>
+        <button id="finalizar">Finalizar Compra</button>
     </main>
 
     <script>
-        async function cargarImagenAuto() {
-            const status = document.getElementById('api-status');
-            const contenedor = document.getElementById('api-image');
-            status.textContent = 'Cargando imagen...';
-            contenedor.innerHTML = '';
-            try {
-                const url = 'https://picsum.photos/600/400?random=automobile' + new Date().getTime();
-                const img = document.createElement('img');
-                img.src = url;
-                img.alt = 'Auto aleatorio';
-                img.style.maxWidth = '100%';
-                img.onload = () => {
-                    status.textContent = 'Imagen aleatoria:';
-                };
-                img.onerror = () => {
-                    status.textContent = 'No se pudo cargar la imagen.';
-                };
-                contenedor.appendChild(img);
-            } catch (error) {
-                status.textContent = 'Ocurrió un error al cargar la imagen.';
+        const btnFinalizar = document.getElementById("finalizar");
+        const mostrarTotal = document.getElementById("total");
+        let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+        function mostrarCarrito() {
+            const contenedor = document.getElementById("carrito");
+            contenedor.innerHTML = "";
+            let total = 0;
+
+            if (carrito.length === 0) { /*Si el carrito está vacío*/
+                contenedor.innerHTML = "<p>Tu carrito está vacío.</p>";
             }
+            else {
+                carrito.forEach((item, index) => {
+                    const div = document.createElement("div");
+                    div.classList.add("producto");
+                    // Mostramos con InnerHTML la imagen, nombre, precio por Unidad y precio por la cantidad (con 2 decimales) del Producto
+                    console.log(carrito);
+                    div.innerHTML = `
+                        <img src="${item.imagen}">
+                        <h4>${item.nombre}</h4>
+                        <p>$${item.precio} x ${item.cantidad} = $${(item.precio * item.cantidad).toFixed(2)}</p>
+                    `;
+
+                    // botón -
+                    const btnMenos = document.createElement("button");
+                    btnMenos.textContent = "-";
+                    btnMenos.addEventListener("click", () => cambiarCantidad(index, -1)); /*Si clickea el boton menos llamamos a la funcion cambiarCantidad 
+                                                                                           y le pasamos la posicion del producto y -1 (esto en la funcion se lo vamos a sumar a cantidad)*/
+
+                    // botón +
+                    const btnMas = document.createElement("button");
+                    btnMas.textContent = "+";
+                    btnMas.addEventListener("click", () => cambiarCantidad(index, 1)); /*Si clickea el boton más llamamos a la funcion cambiarCantidad 
+                                                                                        y le pasamos la posicion del producto y 1 (esto en la funcion se lo vamos a sumar a cantidad)*/
+
+                    // botón eliminar
+                    const btnEliminar = document.createElement("button");
+                    btnEliminar.textContent = "Eliminar";
+                    btnEliminar.addEventListener("click", () => eliminar(index)); /*Si clickea el boton Eliminar llamamos a la funcion eliminar 
+                                                                                    y le pasamos la posicion del producto*/
+
+                    /* Agrego los botones al div*/
+                    div.appendChild(btnMenos);
+                    div.appendChild(btnMas);
+                    div.appendChild(btnEliminar);
+                    /*Agrego el div al contenedor*/
+                    contenedor.appendChild(div);
+
+                    /* Sumamos el total*/
+                    total += item.precio * item.cantidad;
+                });
+            }
+            mostrarTotal.textContent = "Total: $" + total.toFixed(2);
         }
 
-        document.getElementById('recargar-btn').onclick = cargarImagenAuto;
+        function cambiarCantidad(i, num) {
+            carrito[i].cantidad += num; /*Le sumamos o restamos 1 a carrito[i].cantidad*/
+            if (carrito[i].cantidad <= 0) { /*Si al restarle 1 a carrito[i].cantidad es menor o igual a 0*/
+                carrito.splice(i, 1); /*Eliminamos el objeto del producto del array Carrito*/
+            }
+            localStorage.setItem("carrito", JSON.stringify(carrito));
+            mostrarCarrito();
+        }
 
-        cargarImagenAuto();
+        function eliminar(i) {
+            carrito.splice(i, 1); /*Eliminamos el objeto del producto del array Carrito*/
+            localStorage.setItem("carrito", JSON.stringify(carrito));
+            mostrarCarrito();
+        }
+
+        btnFinalizar.addEventListener("click", () => {
+            /*Si el Array carrito no está vacio*/
+            if (carrito.length > 0) {
+                alert("¡Gracias por tu compra!");
+                /*limpio todo el carrito y el localStorage para empezar de nuevo*/
+                carrito = [];
+                localStorage.removeItem("carrito");
+                mostrarCarrito();
+            } else { /*Si el Array carrito está vacio*/
+                alert("El carrito está vacío.");
+            }
+        });
+
+        mostrarCarrito();
     </script>
-    <!-- API FETCH -->
 </body>
 
 </html>

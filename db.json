@@ -8,6 +8,15 @@
       "fechaNacimiento": "2004-06-29",
       "genero": "Masculino",
       "pais": "Argentina"
+    },
+    {
+      "id": "2b02",
+      "nombre": "Pedro Ortiz",
+      "email": "PedroOrtiz@gmail.com",
+      "telefono": "341887544",
+      "fechaNacimiento": "2003-01-14",
+      "genero": "Masculino",
+      "pais": "México"
     }
   ]
 }

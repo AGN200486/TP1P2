@@ -21,7 +21,7 @@
         </a>
         <a href="pagina2.html" style="text-decoration: none;">Modelos </a>
         <a href="..//TP1P2/pagina3.html" style="text-decoration: none;">Formulario </a>
-        <a href="..//TP1P2/pagina4.html" style="text-decoration: none;">Pagina 4 </a>
+        <a href="..//TP1P2/pagina4.html" style="text-decoration: none;">Carrito </a>
     </header>
     <main>
         <br>
@@ -32,6 +32,10 @@
                 <div class="info">
                     <h3>Ford Model A Phaeton (1928–1931)</h3>
                     <p>Motor 3.3 L, 40 HP, velocidad máx. 105 km/h. Sucesor del Modelo T.</p>
+                    <button class="agregar-carrito" data-id="1" data-nombre="Ford Model A Phaeton" data-precio="12000"
+                        data-imagen="../TP1P2/images/autoverde.jpg">
+                        Agregar al carrito
+                    </button>
                 </div>
             </div>
 
@@ -40,6 +44,10 @@
                 <div class="info">
                     <h3>Chevrolet Special DeLuxe (1941)</h3>
                     <p>Motor 3.5 L, 90 HP, lujoso modelo previo a la Segunda Guerra Mundial.</p>
+                    <button class="agregar-carrito" data-id="2" data-nombre="Chevrolet Special Deluxe"
+                        data-precio="15000" data-imagen="../TP1P2/images/autoRojo.jpg">
+                        Agregar al carrito
+                    </button>
                 </div>
             </div>
 
@@ -48,6 +56,10 @@
                 <div class="info">
                     <h3>Ford Mustang Convertible (1967)</h3>
                     <p>Motor hasta 7.0 L V8, ícono del “pony car” con diseño musculoso.</p>
+                    <button class="agregar-carrito" data-id="3" data-nombre="Ford Mustang Convertible"
+                        data-precio="30000" data-imagen="../TP1P2/images/autoRojoDescapotable.jpg">
+                        Agregar al carrito
+                    </button>
                 </div>
             </div>
 
@@ -56,11 +68,51 @@
                 <div class="info">
                     <h3>Cadillac LaSalle Serie 303 (1929)</h3>
                     <p>Motor V8 5.0 L, lujo a menor precio, diseñado por Harley Earl.</p>
+                    <button class="agregar-carrito" data-id="4" data-nombre="Cadillac LaSalle Serie 303"
+                        data-precio="18000" data-imagen="../TP1P2/images/autoBaige.jpg">
+                        Agregar al carrito
+                    </button>
                 </div>
             </div>
         </div>
-
     </main>
+    <script>
+        // --- Inicializar carrito ---
+        const botones = document.querySelectorAll(".agregar-carrito")
+        let carrito = JSON.parse(localStorage.getItem("carrito")) || []; /*Array con los productos agregados al carrito*/
+
+        function agregarProducto(producto) {
+            let existe = null;
+
+            for (let i = 0; i < carrito.length; i++) { /*Recorremos el array carrito*/
+                if (carrito[i].id === producto.id) { /*Si el id del producto que queremos agregar ya existe en el carrito*/
+                    existe = carrito[i]; /*Guardamos la referencia al producto ya existente en carrito*/
+                    break;               /*Salimos del bucle porque ya lo encontramos*/
+                }
+            }
+            if (existe) { /*Si el producto ya exise en Carrito aumentamos 1 la cantidad*/
+                existe.cantidad++;
+            } else {
+                carrito.push(producto);
+            }
+            localStorage.setItem("carrito", JSON.stringify(carrito));
+            alert("Producto agregado al carrito");
+        }
+
+        botones.forEach(boton => {
+            boton.addEventListener("click", () => {
+                /*creamos un objeto que representa el auto que querés agregar al carrito*/
+                const producto = {
+                    id: boton.dataset.id,
+                    nombre: boton.dataset.nombre,
+                    precio: parseFloat(boton.dataset.precio),
+                    imagen: boton.dataset.imagen,
+                    cantidad: 1
+                };
+                agregarProducto(producto);
+            });
+        });
+    </script>
 </body>
 
 </html>

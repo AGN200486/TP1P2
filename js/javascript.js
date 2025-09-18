@@ -169,7 +169,7 @@ form.addEventListener("submit", e => {
     validarPais();
   /*La variable valido será True si todas las funciones devuelven True*/
   if (valido) {
-    // 1. Crear un objeto con todos los valores del formulario
+    /* 1. Crear un objeto con todos los valores del formulario*/
     const datosFormulario = {
       nombre: campos.name.value.trim(),
       email: campos.email.value.trim(),
@@ -179,7 +179,7 @@ form.addEventListener("submit", e => {
       pais: campos.pais.value
     };
 
-    // 2. Enviar los datos con Fetch a tu API
+    /* 2. Enviar los datos con Fetch a tu API*/
     fetch("http://localhost:3000/usuarios", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -191,11 +191,14 @@ form.addEventListener("submit", e => {
       })
       .then(data => {
         alert("Formulario enviado con éxito ✅\nID asignado: " + data.id);
-        form.reset(); // limpia el formulario
+        form.reset(); /* limpia el formulario*/
       })
       .catch(() => alert("Ocurrió un error al enviar el formulario ❌"));
   } else {
     alert("Por favor, corrija los errores antes de enviar ❌");
   }
+  /*Arrancar JSON server (comandos en Simbolo del Sistema)
+  1erComando(ir a la carpeta donde esta db.json): cd "C:\Users\Agustín\Documents\GitHub\TP1P2"
+  2doComando(levantar servidor): json-server --watch db.json --port 3000 */
 });
 
