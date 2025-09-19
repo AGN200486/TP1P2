@@ -64,6 +64,35 @@ header a:hover {
   color: white;
 }
 
+.navbar {
+    display: flex;
+    gap: 20px;
+    margin-left: 20px;
+}
+
+.close-navbar {
+    display: none;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #fff;
+    cursor: pointer;
+    z-index: 1100;
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    margin-left: 10px;
+    cursor: pointer;
+    color: #fff;
+}
+
 /*imagen logo del header*/
 .logo img {
   width: 90px;
@@ -150,7 +179,7 @@ header a:hover {
 }
 /*Animacion de zoom al pasar el mouse por encima de las imagenes*/
 .item img:hover {
-  transform: scale(1.1);
+  transform: scale(1.03);
 }
 
 /*Informacion de los Autos*/
@@ -372,4 +401,72 @@ select.invalid {
 
 #finalizar:hover {
   background: rgb(137, 22, 22);
+}
+
+/* Footer persistente y transparente */
+.footer-persistente {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: rgba(255,255,255,0.3); /* Blanco transparente */
+  color: #420000;
+  text-align: center;
+  padding: 12px 0;
+  font-size: 1rem;
+  z-index: 2000;
+  backdrop-filter: blur(2px); /* Efecto de desenfoque opcional */
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.08);
+}
+
+@media (max-width: 900px) {
+    .navbar {
+        position: fixed;
+        top: 0;
+        right: -200px;
+        height: 100vh;
+        width: 200px;
+        background: #420000;
+        flex-direction: column;
+        gap: 0;
+        padding-top: 60px;
+        transition: right 0.3s;
+        z-index: 1000;
+        box-shadow: -2px 0 8px rgba(0,0,0,0.2);
+        border-radius: 10px;
+    }
+    .navbar.open {
+        right: 0;
+    }
+
+.close-navbar {
+    display: block;
+    border-radius: 10px;
+    font-size: 1.8rem;
+    padding: 6px 10px;
+    color: #f6e924;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+    z-index: 1100;
+    border: none;
+}
+    .navbar a {
+        color: #000000;
+        padding: 20px;
+        border-bottom: 1px solid #444;
+        text-decoration: none;
+        display: block;
+    }
+    .menu-toggle {
+        display: block;
+    }
+    header {
+        justify-content: space-between;
+    }
+
+        .item img:hover {
+        transform: scale(1.03);
+    }
 }

@@ -9,10 +9,13 @@ const campos = {
   pais: document.getElementById("pais"),
 };
 
-
-function setError(input, mensaje) { /*cambia el texto de error y lo muestra*/
-  const contenedor = input.closest(".form-group"); /*Busca el contenedor más cercano con la clase .form-group*/
-  const error = contenedor.querySelector(".errorMens")
+function setError(input, mensaje) {
+  /*cambia el texto de error y lo muestra*/
+  const contenedor =
+    input.closest(
+      ".form-group"
+    ); /*Busca el contenedor más cercano con la clase .form-group*/
+  const error = contenedor.querySelector(".errorMens");
   const icono = contenedor.querySelector(".estado-icon");
   error.textContent = mensaje;
   error.style.display = "block"; /*por si estaba oculto*/
@@ -27,13 +30,18 @@ function setError(input, mensaje) { /*cambia el texto de error y lo muestra*/
   }
 }
 
-function clearError(input) { /*Borra el texto de error y lo oculta.*/
-  const contenedor = input.closest(".form-group"); /*Busca el contenedor más cercano con la clase .form-group*/
-  const error = contenedor.querySelector(".errorMens")
+function clearError(input) {
+  /*Borra el texto de error y lo oculta.*/
+  const contenedor =
+    input.closest(
+      ".form-group"
+    ); /*Busca el contenedor más cercano con la clase .form-group*/
+  const error = contenedor.querySelector(".errorMens");
   const icono = contenedor.querySelector(".estado-icon");
 
   error.textContent = ""; /*deja el mensaje vacio*/
-  error.style.display = "none"; /*Ocultar el elemento para que no ocupe espacio en el diseño*/
+  error.style.display =
+    "none"; /*Ocultar el elemento para que no ocupe espacio en el diseño*/
 
   input.classList.remove("invalid");
   input.classList.add("valid");
@@ -42,7 +50,6 @@ function clearError(input) { /*Borra el texto de error y lo oculta.*/
     icono.textContent = "✅";
     icono.classList.add("valid");
     icono.classList.remove("invalid");
-
   }
 }
 
@@ -63,15 +70,18 @@ function validarEmail() {
   const arrobaPos = valor.indexOf("@");
   const puntoPos = valor.lastIndexOf(".");
 
-  if (arrobaPos < 1) { /*Que haya un "@" y que no sea el primer carácter*/
+  if (arrobaPos < 1) {
+    /*Que haya un "@" y que no sea el primer carácter*/
     setError(campos.email, "Email Invalido");
     return false;
   }
-  if (puntoPos < arrobaPos + 2) { /*Que exista un "." después del "@" (no inmediatamente, al menos 2 caracteres después)*/
+  if (puntoPos < arrobaPos + 2) {
+    /*Que exista un "." después del "@" (no inmediatamente, al menos 2 caracteres después)*/
     setError(campos.email, "Debe haber un punto después del @");
     return false;
   }
-  if (puntoPos == valor.length - 1) { /*Que el "." no sea el último carácter*/
+  if (puntoPos == valor.length - 1) {
+    /*Que el "." no sea el último carácter*/
     setError(campos.email, "Email Invalido");
     return false;
   }
@@ -88,7 +98,8 @@ function validarTelefono() {
     return false;
   }
 
-  if (isNaN(valor)) { /*Comprobacion si valor es un numero*/
+  if (isNaN(valor)) {
+    /*Comprobacion si valor es un numero*/
     setError(campos.telefono, "El teléfono debe tener solo números");
     return false;
   }
@@ -97,17 +108,22 @@ function validarTelefono() {
   return true;
 }
 
-
 function validarFechaNacimiento() {
   const valor = campos.fechaNacimiento.value;
   if (!valor) {
     setError(campos.fechaNacimiento, "La fecha de nacimiento es obligatoria");
     return false;
   }
-  const fecha = new Date(valor); /*convierte el string de la fecha en un objeto Date de JavaScript*/
+  const fecha = new Date(
+    valor
+  ); /*convierte el string de la fecha en un objeto Date de JavaScript*/
   const hoy = new Date(); /*Guardamos la fecha actual*/
-  const edad = hoy.getFullYear() - fecha.getFullYear(); /*Calculamos la edad haciendo la diferencia de años entre el año actual y el año de nacimiento.*/
-  const mes = hoy.getMonth() - fecha.getMonth(); /*Diferencia de meses entre la fecha actual y el mes de nacimiento (para ajustar la edad si aún no llegó el cumpleaños en el año actual).*/
+  const edad =
+    hoy.getFullYear() -
+    fecha.getFullYear(); /*Calculamos la edad haciendo la diferencia de años entre el año actual y el año de nacimiento.*/
+  const mes =
+    hoy.getMonth() -
+    fecha.getMonth(); /*Diferencia de meses entre la fecha actual y el mes de nacimiento (para ajustar la edad si aún no llegó el cumpleaños en el año actual).*/
 
   let edadReal = edad;
   /*Si el mes actual es antes del mes de nacimiento o está en el mismo mes pero el día actual es menor que el día de nacimiento*/
@@ -126,7 +142,8 @@ function validarFechaNacimiento() {
 function validarGenero() {
   /* campos.genero es un NodeList con todos los inputs radio de género*/
   let seleccionado = false;
-  for (let i = 0; i < campos.genero.length; i++) { /* pasa por todas las opciones y si no esta ninguna seleccionada saltara un error*/
+  for (let i = 0; i < campos.genero.length; i++) {
+    /* pasa por todas las opciones y si no esta ninguna seleccionada saltara un error*/
     if (campos.genero[i].checked) {
       seleccionado = true;
     }
@@ -149,15 +166,21 @@ function validarPais() {
 }
 
 /* Asignar eventos para validación en tiempo real */
-campos.name.addEventListener("input", validarNombre); /*se dispara cada vez que el usuario escribe en un input, se llama a la función de validación correspondiente*/
+campos.name.addEventListener(
+  "input",
+  validarNombre
+); /*se dispara cada vez que el usuario escribe en un input, se llama a la función de validación correspondiente*/
 campos.email.addEventListener("input", validarEmail);
 campos.telefono.addEventListener("input", validarTelefono);
-campos.fechaNacimiento.addEventListener("change", validarFechaNacimiento); /*se dispara cuando cambia el valor, llama a la función de validación correspondiente*/
+campos.fechaNacimiento.addEventListener(
+  "change",
+  validarFechaNacimiento
+); /*se dispara cuando cambia el valor, llama a la función de validación correspondiente*/
 /*No hacemos la validacion en tiempo real del select pais ya que solo saltara mensaje de error al apretar el boton enviar*/
 /*No hacemos la validacion en tiempo real del radio genero ya que solo saltara mensaje de error al apretar el boton enviar*/
 
 /* Validación al enviar*/
-form.addEventListener("submit", e => {
+form.addEventListener("submit", (e) => {
   e.preventDefault(); /*evita que el formulario se envíe, para que primero podamos validar todos los campos*/
 
   const valido =
@@ -176,20 +199,20 @@ form.addEventListener("submit", e => {
       telefono: campos.telefono.value.trim(),
       fechaNacimiento: campos.fechaNacimiento.value,
       genero: form.querySelector('input[name="genero"]:checked')?.value || "",
-      pais: campos.pais.value
+      pais: campos.pais.value,
     };
 
     /* 2. Enviar los datos con Fetch a tu API*/
     fetch("http://localhost:3000/usuarios", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(datosFormulario)
+      body: JSON.stringify(datosFormulario),
     })
-      .then(respuesta => {
+      .then((respuesta) => {
         if (!respuesta.ok) throw new Error("Error en el envío");
         return respuesta.json();
       })
-      .then(data => {
+      .then((data) => {
         alert("Formulario enviado con éxito ✅\nID asignado: " + data.id);
         form.reset(); /* limpia el formulario*/
       })
@@ -202,3 +225,14 @@ form.addEventListener("submit", e => {
   2doComando(levantar servidor): json-server --watch db.json --port 3000 */
 });
 
+const menuToggle = document.querySelector(".menu-toggle");
+const navbar = document.querySelector(".navbar");
+const closeNavbar = document.querySelector(".close-navbar");
+
+menuToggle.addEventListener("click", () => {
+  navbar.classList.toggle("open");
+});
+
+closeNavbar.addEventListener("click", () => {
+  navbar.classList.remove("open");
+});

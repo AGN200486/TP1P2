@@ -1,118 +1,178 @@
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="..//TP1P2/images/logoHotwheels.ico">
-    <link rel="stylesheet" href="..//TP1P2/styles/estilos.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/images/logoHotwheels.ico" />
+    <link rel="stylesheet" href="styles/estilos.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
     <title>Hot Wheels</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="recuadro">
-        <img src="..//TP1P2/images/recuadro.png" alt="recuadro">
+      <img src="/images/recuadro.png" alt="recuadro" />
     </div>
 
     <header>
-        <a href="..//TP1P2/pagina1.html" class="logo">
-            <img src="..//TP1P2/images/logoHotwheels2.jpg" alt="logoHotwheels">
-        </a>
-        <a href="pagina2.html" style="text-decoration: none;">Modelos </a>
-        <a href="..//TP1P2/pagina3.html" style="text-decoration: none;">Formulario </a>
-        <a href="..//TP1P2/pagina4.html" style="text-decoration: none;">Carrito </a>
+      <a href="/pagina1.html" class="logo">
+        <img src="/images/logoHotwheels2.jpg" alt="logoHotwheels" />
+      </a>
+      <button class="menu-toggle" aria-label="Abrir menú">&#9776;</button>
+      <nav class="navbar">
+        <button class="close-navbar" aria-label="Cerrar menú">&rarr;</button>
+        <a href="/pagina2.html">Modelos</a>
+        <a href="/pagina3.html">Formulario</a>
+        <a href="/pagina4.html">Carrito</a>
+      </nav>
     </header>
     <main>
-        <br>
+      <br />
 
-        <div class="galeria">
-            <div class="item">
-                <img src="../TP1P2/images/autoverde.jpg" alt="Auto Vintage Verde">
-                <div class="info">
-                    <h3>Ford Model A Phaeton (1928–1931)</h3>
-                    <p>Motor 3.3 L, 40 HP, velocidad máx. 105 km/h. Sucesor del Modelo T.</p>
-                    <button class="agregar-carrito" data-id="1" data-nombre="Ford Model A Phaeton" data-precio="12000"
-                        data-imagen="../TP1P2/images/autoverde.jpg">
-                        Agregar al carrito
-                    </button>
-                </div>
-            </div>
-
-            <div class="item">
-                <img src="../TP1P2/images/autoRojo.jpg" alt="Auto Vintage Rojo">
-                <div class="info">
-                    <h3>Chevrolet Special DeLuxe (1941)</h3>
-                    <p>Motor 3.5 L, 90 HP, lujoso modelo previo a la Segunda Guerra Mundial.</p>
-                    <button class="agregar-carrito" data-id="2" data-nombre="Chevrolet Special Deluxe"
-                        data-precio="15000" data-imagen="../TP1P2/images/autoRojo.jpg">
-                        Agregar al carrito
-                    </button>
-                </div>
-            </div>
-
-            <div class="item">
-                <img src="../TP1P2/images/autoRojoDescapotable.jpg" alt="Auto Vintage Rojo Descapotable">
-                <div class="info">
-                    <h3>Ford Mustang Convertible (1967)</h3>
-                    <p>Motor hasta 7.0 L V8, ícono del “pony car” con diseño musculoso.</p>
-                    <button class="agregar-carrito" data-id="3" data-nombre="Ford Mustang Convertible"
-                        data-precio="30000" data-imagen="../TP1P2/images/autoRojoDescapotable.jpg">
-                        Agregar al carrito
-                    </button>
-                </div>
-            </div>
-
-            <div class="item">
-                <img src="../TP1P2/images/autoBaige.jpg" alt="Auto Vintage Baige">
-                <div class="info">
-                    <h3>Cadillac LaSalle Serie 303 (1929)</h3>
-                    <p>Motor V8 5.0 L, lujo a menor precio, diseñado por Harley Earl.</p>
-                    <button class="agregar-carrito" data-id="4" data-nombre="Cadillac LaSalle Serie 303"
-                        data-precio="18000" data-imagen="../TP1P2/images/autoBaige.jpg">
-                        Agregar al carrito
-                    </button>
-                </div>
-            </div>
+      <div class="galeria">
+        <div class="item">
+          <img src="/images/autoverde.jpg" alt="Auto Vintage Verde" />
+          <div class="info">
+            <h3>Ford Model A Phaeton (1928–1931)</h3>
+            <p>
+              Motor 3.3 L, 40 HP, velocidad máx. 105 km/h. Sucesor del Modelo T.
+            </p>
+            <button
+              class="agregar-carrito"
+              data-id="1"
+              data-nombre="Ford Model A Phaeton"
+              data-precio="12000"
+              data-imagen="/images/autoverde.jpg"
+            >
+              Agregar al carrito
+            </button>
+          </div>
         </div>
+
+        <div class="item">
+          <img src="/images/autoRojo.jpg" alt="Auto Vintage Rojo" />
+          <div class="info">
+            <h3>Chevrolet Special DeLuxe (1941)</h3>
+            <p>
+              Motor 3.5 L, 90 HP, lujoso modelo previo a la Segunda Guerra
+              Mundial.
+            </p>
+            <button
+              class="agregar-carrito"
+              data-id="2"
+              data-nombre="Chevrolet Special Deluxe"
+              data-precio="15000"
+              data-imagen="/images/autoRojo.jpg"
+            >
+              Agregar al carrito
+            </button>
+          </div>
+        </div>
+
+        <div class="item">
+          <img
+            src="/images/autoRojoDescapotable.jpg"
+            alt="Auto Vintage Rojo Descapotable"
+          />
+          <div class="info">
+            <h3>Ford Mustang Convertible (1967)</h3>
+            <p>
+              Motor hasta 7.0 L V8, ícono del “pony car” con diseño musculoso.
+            </p>
+            <button
+              class="agregar-carrito"
+              data-id="3"
+              data-nombre="Ford Mustang Convertible"
+              data-precio="30000"
+              data-imagen="/images/autoRojoDescapotable.jpg"
+            >
+              Agregar al carrito
+            </button>
+          </div>
+        </div>
+
+        <div class="item">
+          <img src="/images/autoBaige.jpg" alt="Auto Vintage Baige" />
+          <div class="info">
+            <h3>Cadillac LaSalle Serie 303 (1929)</h3>
+            <p>
+              Motor V8 5.0 L, lujo a menor precio, diseñado por Harley Earl.
+            </p>
+            <button
+              class="agregar-carrito"
+              data-id="4"
+              data-nombre="Cadillac LaSalle Serie 303"
+              data-precio="18000"
+              data-imagen="/images/autoBaige.jpg"
+            >
+              Agregar al carrito
+            </button>
+          </div>
+        </div>
+      </div>
     </main>
+    <footer class="footer-persistente">
+      © 2025 Dream Team. Todos los derechos reservados.
+    </footer>
     <script>
-        // --- Inicializar carrito ---
-        const botones = document.querySelectorAll(".agregar-carrito")
-        let carrito = JSON.parse(localStorage.getItem("carrito")) || []; /*Array con los productos agregados al carrito*/
+      // --- Inicializar carrito ---
+      const botones = document.querySelectorAll(".agregar-carrito");
+      let carrito =
+        JSON.parse(localStorage.getItem("carrito")) ||
+        []; /*Array con los productos agregados al carrito*/
 
-        function agregarProducto(producto) {
-            let existe = null;
+      function agregarProducto(producto) {
+        let existe = null;
 
-            for (let i = 0; i < carrito.length; i++) { /*Recorremos el array carrito*/
-                if (carrito[i].id === producto.id) { /*Si el id del producto que queremos agregar ya existe en el carrito*/
-                    existe = carrito[i]; /*Guardamos la referencia al producto ya existente en carrito*/
-                    break;               /*Salimos del bucle porque ya lo encontramos*/
-                }
-            }
-            if (existe) { /*Si el producto ya exise en Carrito aumentamos 1 la cantidad*/
-                existe.cantidad++;
-            } else {
-                carrito.push(producto);
-            }
-            localStorage.setItem("carrito", JSON.stringify(carrito));
-            alert("Producto agregado al carrito");
+        for (let i = 0; i < carrito.length; i++) {
+          /*Recorremos el array carrito*/
+          if (carrito[i].id === producto.id) {
+            /*Si el id del producto que queremos agregar ya existe en el carrito*/
+            existe =
+              carrito[
+                i
+              ]; /*Guardamos la referencia al producto ya existente en carrito*/
+            break; /*Salimos del bucle porque ya lo encontramos*/
+          }
         }
+        if (existe) {
+          /*Si el producto ya exise en Carrito aumentamos 1 la cantidad*/
+          existe.cantidad++;
+        } else {
+          carrito.push(producto);
+        }
+        localStorage.setItem("carrito", JSON.stringify(carrito));
+        alert("Producto agregado al carrito");
+      }
 
-        botones.forEach(boton => {
-            boton.addEventListener("click", () => {
-                /*creamos un objeto que representa el auto que querés agregar al carrito*/
-                const producto = {
-                    id: boton.dataset.id,
-                    nombre: boton.dataset.nombre,
-                    precio: parseFloat(boton.dataset.precio),
-                    imagen: boton.dataset.imagen,
-                    cantidad: 1
-                };
-                agregarProducto(producto);
-            });
+      botones.forEach((boton) => {
+        boton.addEventListener("click", () => {
+          /*creamos un objeto que representa el auto que querés agregar al carrito*/
+          const producto = {
+            id: boton.dataset.id,
+            nombre: boton.dataset.nombre,
+            precio: parseFloat(boton.dataset.precio),
+            imagen: boton.dataset.imagen,
+            cantidad: 1,
+          };
+          agregarProducto(producto);
         });
-    </script>
-</body>
+      });
 
+      const menuToggle = document.querySelector(".menu-toggle");
+      const navbar = document.querySelector(".navbar");
+      const closeNavbar = document.querySelector(".close-navbar");
+
+      menuToggle.addEventListener("click", () => {
+        navbar.classList.toggle("open");
+      });
+
+      closeNavbar.addEventListener("click", () => {
+        navbar.classList.remove("open");
+      });
+    </script>
+  </body>
 </html>
