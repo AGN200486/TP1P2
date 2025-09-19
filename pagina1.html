@@ -2,35 +2,33 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="/images/logoHotwheels.ico" />
-    <link rel="stylesheet" href="/styles/estilos.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
-      rel="stylesheet"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="icon" href="..//TP1P2/images/logoHotwheels.ico"/>
+    <link rel="stylesheet" href="..//TP1P2/styles/estilos.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet"/>
     <title>Hot Wheels</title>
   </head>
 
   <body>
     <div class="recuadro">
-      <img src="/images/recuadro.png" alt="recuadro" />
+      <img src="..//TP1P2/images/recuadro.png" alt="recuadro"/>
     </div>
     <header>
-      <a href="/pagina1.html" class="logo">
-        <img src="/images/logoHotwheels2.jpg" alt="logoHotwheels" />
+      <a href="pagina1.html" class="logo">
+        <img src="..//TP1P2/images/logoHotwheels2.jpg" alt="logoHotwheels" />
       </a>
       <button class="menu-toggle" aria-label="Abrir menú">&#9776;</button>
       <nav class="navbar">
         <button class="close-navbar" aria-label="Cerrar menú">&rarr;</button>
-        <a href="/pagina2.html">Modelos</a>
-        <a href="/pagina3.html">Formulario</a>
-        <a href="/pagina4.html">Carrito</a>
+        <a href="..//TP1P2/pagina2.html">Modelos</a>
+        <a href="..//TP1P2/pagina3.html">Formulario</a>
+        <a href="..//TP1P2/pagina4.html">Carrito</a>
       </nav>
     </header>
+
     <main class="main-container">
       <h1>Bienvenido!!!</h1>
-      <br />
+      <br>
       <p>
         Somos Hot Wheels, una empresa dedicada a que tu auto
         <b>clasico</b> soñado llegue a <b>TUS</b> manos.
@@ -38,20 +36,20 @@
 
       <div class="carrusel">
         <img
-          src="/images/imgCarrusel/AstonMartinCarrusel1.jpg"
+          src="..//TP1P2/images/imgCarrusel/AstonMartinCarrusel1.jpg"
           class="active"
           alt="Auto Aston Martin"
         />
         <img
-          src="/images/imgCarrusel/dodgeChallengerCarrusel2.jpg"
+          src="..//TP1P2/images/imgCarrusel/dodgeChallengerCarrusel2.jpg"
           alt="Auto Dodge Challenger"
         />
         <img
-          src="/images/imgCarrusel/DodgeChargerCarrusel3.jpg"
+          src="..//TP1P2/images/imgCarrusel/DodgeChargerCarrusel3.jpg"
           alt="Auto Dodge Charger"
         />
         <img
-          src="/images/imgCarrusel/FordMustangBossCarrusel4.jpg"
+          src="..//TP1P2/images/imgCarrusel/FordMustangBossCarrusel4.jpg"
           alt="Auto Ford Mustang"
         />
       </div>
@@ -65,17 +63,12 @@
       let index = 0;
 
       function MostrarProxImg() {
-        imagen[index].classList.remove(
-          "active"
-        ); /*Removemos la clase active para poder mostrar la imagen siguiente*/
+        imagen[index].classList.remove("active"); /*Removemos la clase active para poder mostrar la imagen siguiente*/
         index++; /*incrementa el índice*/
-        if (index == imagen.length) {
-          /* Si index llega a images.length -1 (última), la expresión vuelve a 0*/
+        if (index == imagen.length) { /* Si index llega a images.length -1 (última), la expresión vuelve a 0*/  
           index = 0;
         }
-        imagen[index].classList.add(
-          "active"
-        ); /*asignamos la clase active a la proxima imagen*/
+        imagen[index].classList.add("active"); /*asignamos la clase active a la proxima imagen*/
       }
 
       // Cambia la imagen cada 4 segundos

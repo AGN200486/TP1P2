@@ -3,39 +3,37 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="/images/logoHotwheels.ico" />
-    <link rel="stylesheet" href="/styles/estilos.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="icon" href="..//TP1P2/images/logoHotwheels.ico"/>
+    <link rel="stylesheet" href="..//TP1P2/styles/estilos.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet"/>
     <title>Hot Wheels</title>
   </head>
 
-  <body>
+  <body class="CarritoBody">
     <div class="recuadro">
-      <img src="/images/recuadro.png" alt="recuadro" />
+      <img src="..//TP1P2/images/recuadro.png" alt="recuadro"/>
     </div>
 
     <header>
-      <a href="/pagina1.html" class="logo">
-        <img src="/images/logoHotwheels2.jpg" alt="logoHotwheels" />
+      <a href="..//TP1P2/pagina1.html" class="logo">
+        <img src="..//TP1P2/images/logoHotwheels2.jpg" alt="logoHotwheels" />
       </a>
       <button class="menu-toggle" aria-label="Abrir menú">&#9776;</button>
       <nav class="navbar">
         <button class="close-navbar" aria-label="Cerrar menú">&rarr;</button>
-        <a href="/pagina2.html">Modelos</a>
-        <a href="/pagina3.html">Formulario</a>
-        <a href="/pagina4.html">Carrito</a>
+        <a href="..//TP1P2/pagina2.html">Modelos</a>
+        <a href="..//TP1P2/pagina3.html">Formulario</a>
+        <a href="pagina4.html">Carrito</a>
       </nav>
     </header>
 
-    <main>
+    <main class="CarritoMain">
       <div id="carrito"></div>
       <h3 id="total"></h3>
       <button id="finalizar">Finalizar Compra</button>
     </main>
-    <footer class="footer-persistente">
+
+    <footer class="footer-static">
       © 2025 Dream Team. Todos los derechos reservados.
     </footer>
 
@@ -49,46 +47,35 @@
         contenedor.innerHTML = "";
         let total = 0;
 
-        if (carrito.length === 0) {
-          /*Si el carrito está vacío*/
+        if (carrito.length === 0) { /*Si el carrito está vacío*/
           contenedor.innerHTML = "<p>Tu carrito está vacío.</p>";
         } else {
           carrito.forEach((item, index) => {
             const div = document.createElement("div");
             div.classList.add("producto");
             // Mostramos con InnerHTML la imagen, nombre, precio por Unidad y precio por la cantidad (con 2 decimales) del Producto
-            console.log(carrito);
             div.innerHTML = `
-                        <img src="${item.imagen}">
-                        <h4>${item.nombre}</h4>
-                        <p>$${item.precio} x ${item.cantidad} = $${(
-              item.precio * item.cantidad
-            ).toFixed(2)}</p>
-                    `;
-
+              <img src="${item.imagen}">
+              <h4>${item.nombre}</h4>
+              <p>$${item.precio} x ${item.cantidad} = $${(item.precio * item.cantidad).toFixed(2)}</p>
+            `;
             // botón -
             const btnMenos = document.createElement("button");
             btnMenos.textContent = "-";
-            btnMenos.addEventListener("click", () =>
-              cambiarCantidad(index, -1)
-            ); /*Si clickea el boton menos llamamos a la funcion cambiarCantidad 
-                                                                                           y le pasamos la posicion del producto y -1 (esto en la funcion se lo vamos a sumar a cantidad)*/
+            btnMenos.addEventListener("click", () => cambiarCantidad(index, -1)); /*Si clickea el boton menos llamamos a la funcion cambiarCantidad 
+                                                                                  y le pasamos la posicion del producto y -1 (esto en la funcion se lo vamos a sumar a cantidad)*/
 
             // botón +
             const btnMas = document.createElement("button");
             btnMas.textContent = "+";
-            btnMas.addEventListener("click", () =>
-              cambiarCantidad(index, 1)
-            ); /*Si clickea el boton más llamamos a la funcion cambiarCantidad 
-                                                                                        y le pasamos la posicion del producto y 1 (esto en la funcion se lo vamos a sumar a cantidad)*/
+            btnMas.addEventListener("click", () => cambiarCantidad(index, 1)); /*Si clickea el boton más llamamos a la funcion cambiarCantidad 
+                                                                              y le pasamos la posicion del producto y 1 (esto en la funcion se lo vamos a sumar a cantidad)*/
 
             // botón eliminar
             const btnEliminar = document.createElement("button");
             btnEliminar.textContent = "Eliminar";
-            btnEliminar.addEventListener("click", () =>
-              eliminar(index)
-            ); /*Si clickea el boton Eliminar llamamos a la funcion eliminar 
-                                                                                    y le pasamos la posicion del producto*/
+            btnEliminar.addEventListener("click", () => eliminar(index)); /*Si clickea el boton Eliminar llamamos a la funcion eliminar 
+                                                                          y le pasamos la posicion del producto*/
 
             /* Agrego los botones al div*/
             div.appendChild(btnMenos);
@@ -105,24 +92,16 @@
       }
 
       function cambiarCantidad(i, num) {
-        carrito[i].cantidad +=
-          num; /*Le sumamos o restamos 1 a carrito[i].cantidad*/
-        if (carrito[i].cantidad <= 0) {
-          /*Si al restarle 1 a carrito[i].cantidad es menor o igual a 0*/
-          carrito.splice(
-            i,
-            1
-          ); /*Eliminamos el objeto del producto del array Carrito*/
+        carrito[i].cantidad += num; /*Le sumamos o restamos 1 a carrito[i].cantidad*/
+        if (carrito[i].cantidad <= 0) { /*Si al restarle 1 a carrito[i].cantidad es menor o igual a 0*/
+          carrito.splice(i,1); /*Eliminamos el objeto del producto del array Carrito*/
         }
         localStorage.setItem("carrito", JSON.stringify(carrito));
         mostrarCarrito();
       }
 
       function eliminar(i) {
-        carrito.splice(
-          i,
-          1
-        ); /*Eliminamos el objeto del producto del array Carrito*/
+        carrito.splice(i,1); /*Eliminamos el objeto del producto del array Carrito*/
         localStorage.setItem("carrito", JSON.stringify(carrito));
         mostrarCarrito();
       }
