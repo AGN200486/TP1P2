@@ -1,122 +1,159 @@
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="..//TP1P2/images/logoHotwheels.ico">
-    <link rel="stylesheet" href="..//TP1P2/estilos.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/images/logoHotwheels.ico" />
+    <link rel="stylesheet" href="/styles/estilos.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
     <title>Hot Wheels</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="recuadro">
-        <img src="..//TP1P2/images/recuadro.png" alt="recuadro">
+      <img src="/images/recuadro.png" alt="recuadro" />
     </div>
 
     <header>
-        <a href="..//TP1P2/pagina1.html" class="logo">
-            <img src="..//TP1P2/images/logoHotwheels2.jpg" alt="logoHotwheels">
-        </a>
-        <a href="..//TP1P2/pagina2.html" style="text-decoration: none;">Modelos </a>
-        <a href="..//TP1P2/pagina3.html" style="text-decoration: none;">Formulario </a>
-        <a href="pagina4.html" style="text-decoration: none;">Carrito </a>
+      <a href="/pagina1.html" class="logo">
+        <img src="/images/logoHotwheels2.jpg" alt="logoHotwheels" />
+      </a>
+      <button class="menu-toggle" aria-label="Abrir menú">&#9776;</button>
+      <nav class="navbar">
+        <button class="close-navbar" aria-label="Cerrar menú">&rarr;</button>
+        <a href="/pagina2.html">Modelos</a>
+        <a href="/pagina3.html">Formulario</a>
+        <a href="/pagina4.html">Carrito</a>
+      </nav>
     </header>
 
     <main>
-        <div id="carrito"></div>
-        <h3 id="total"></h3>
-        <button id="finalizar">Finalizar Compra</button>
+      <div id="carrito"></div>
+      <h3 id="total"></h3>
+      <button id="finalizar">Finalizar Compra</button>
     </main>
+    <footer class="footer-persistente">
+      © 2025 Dream Team. Todos los derechos reservados.
+    </footer>
 
     <script>
-        const btnFinalizar = document.getElementById("finalizar");
-        const mostrarTotal = document.getElementById("total");
-        let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+      const btnFinalizar = document.getElementById("finalizar");
+      const mostrarTotal = document.getElementById("total");
+      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-        function mostrarCarrito() {
-            const contenedor = document.getElementById("carrito");
-            contenedor.innerHTML = "";
-            let total = 0;
+      function mostrarCarrito() {
+        const contenedor = document.getElementById("carrito");
+        contenedor.innerHTML = "";
+        let total = 0;
 
-            if (carrito.length === 0) { /*Si el carrito está vacío*/
-                contenedor.innerHTML = "<p>Tu carrito está vacío.</p>";
-            }
-            else {
-                carrito.forEach((item, index) => {
-                    const div = document.createElement("div");
-                    div.classList.add("producto");
-                    // Mostramos con InnerHTML la imagen, nombre, precio por Unidad y precio por la cantidad (con 2 decimales) del Producto
-                    console.log(carrito);
-                    div.innerHTML = `
+        if (carrito.length === 0) {
+          /*Si el carrito está vacío*/
+          contenedor.innerHTML = "<p>Tu carrito está vacío.</p>";
+        } else {
+          carrito.forEach((item, index) => {
+            const div = document.createElement("div");
+            div.classList.add("producto");
+            // Mostramos con InnerHTML la imagen, nombre, precio por Unidad y precio por la cantidad (con 2 decimales) del Producto
+            console.log(carrito);
+            div.innerHTML = `
                         <img src="${item.imagen}">
                         <h4>${item.nombre}</h4>
-                        <p>$${item.precio} x ${item.cantidad} = $${(item.precio * item.cantidad).toFixed(2)}</p>
+                        <p>$${item.precio} x ${item.cantidad} = $${(
+              item.precio * item.cantidad
+            ).toFixed(2)}</p>
                     `;
 
-                    // botón -
-                    const btnMenos = document.createElement("button");
-                    btnMenos.textContent = "-";
-                    btnMenos.addEventListener("click", () => cambiarCantidad(index, -1)); /*Si clickea el boton menos llamamos a la funcion cambiarCantidad 
+            // botón -
+            const btnMenos = document.createElement("button");
+            btnMenos.textContent = "-";
+            btnMenos.addEventListener("click", () =>
+              cambiarCantidad(index, -1)
+            ); /*Si clickea el boton menos llamamos a la funcion cambiarCantidad 
                                                                                            y le pasamos la posicion del producto y -1 (esto en la funcion se lo vamos a sumar a cantidad)*/
 
-                    // botón +
-                    const btnMas = document.createElement("button");
-                    btnMas.textContent = "+";
-                    btnMas.addEventListener("click", () => cambiarCantidad(index, 1)); /*Si clickea el boton más llamamos a la funcion cambiarCantidad 
+            // botón +
+            const btnMas = document.createElement("button");
+            btnMas.textContent = "+";
+            btnMas.addEventListener("click", () =>
+              cambiarCantidad(index, 1)
+            ); /*Si clickea el boton más llamamos a la funcion cambiarCantidad 
                                                                                         y le pasamos la posicion del producto y 1 (esto en la funcion se lo vamos a sumar a cantidad)*/
 
-                    // botón eliminar
-                    const btnEliminar = document.createElement("button");
-                    btnEliminar.textContent = "Eliminar";
-                    btnEliminar.addEventListener("click", () => eliminar(index)); /*Si clickea el boton Eliminar llamamos a la funcion eliminar 
+            // botón eliminar
+            const btnEliminar = document.createElement("button");
+            btnEliminar.textContent = "Eliminar";
+            btnEliminar.addEventListener("click", () =>
+              eliminar(index)
+            ); /*Si clickea el boton Eliminar llamamos a la funcion eliminar 
                                                                                     y le pasamos la posicion del producto*/
 
-                    /* Agrego los botones al div*/
-                    div.appendChild(btnMenos);
-                    div.appendChild(btnMas);
-                    div.appendChild(btnEliminar);
-                    /*Agrego el div al contenedor*/
-                    contenedor.appendChild(div);
+            /* Agrego los botones al div*/
+            div.appendChild(btnMenos);
+            div.appendChild(btnMas);
+            div.appendChild(btnEliminar);
+            /*Agrego el div al contenedor*/
+            contenedor.appendChild(div);
 
-                    /* Sumamos el total*/
-                    total += item.precio * item.cantidad;
-                });
-            }
-            mostrarTotal.textContent = "Total: $" + total.toFixed(2);
+            /* Sumamos el total*/
+            total += item.precio * item.cantidad;
+          });
         }
+        mostrarTotal.textContent = "Total: $" + total.toFixed(2);
+      }
 
-        function cambiarCantidad(i, num) {
-            carrito[i].cantidad += num; /*Le sumamos o restamos 1 a carrito[i].cantidad*/
-            if (carrito[i].cantidad <= 0) { /*Si al restarle 1 a carrito[i].cantidad es menor o igual a 0*/
-                carrito.splice(i, 1); /*Eliminamos el objeto del producto del array Carrito*/
-            }
-            localStorage.setItem("carrito", JSON.stringify(carrito));
-            mostrarCarrito();
+      function cambiarCantidad(i, num) {
+        carrito[i].cantidad +=
+          num; /*Le sumamos o restamos 1 a carrito[i].cantidad*/
+        if (carrito[i].cantidad <= 0) {
+          /*Si al restarle 1 a carrito[i].cantidad es menor o igual a 0*/
+          carrito.splice(
+            i,
+            1
+          ); /*Eliminamos el objeto del producto del array Carrito*/
         }
-
-        function eliminar(i) {
-            carrito.splice(i, 1); /*Eliminamos el objeto del producto del array Carrito*/
-            localStorage.setItem("carrito", JSON.stringify(carrito));
-            mostrarCarrito();
-        }
-
-        btnFinalizar.addEventListener("click", () => {
-            /*Si el Array carrito no está vacio*/
-            if (carrito.length > 0) {
-                alert("¡Gracias por tu compra!");
-                /*limpio todo el carrito y el localStorage para empezar de nuevo*/
-                carrito = [];
-                localStorage.removeItem("carrito");
-                mostrarCarrito();
-            } else { /*Si el Array carrito está vacio*/
-                alert("El carrito está vacío.");
-            }
-        });
-
+        localStorage.setItem("carrito", JSON.stringify(carrito));
         mostrarCarrito();
-    </script>
-</body>
+      }
 
+      function eliminar(i) {
+        carrito.splice(
+          i,
+          1
+        ); /*Eliminamos el objeto del producto del array Carrito*/
+        localStorage.setItem("carrito", JSON.stringify(carrito));
+        mostrarCarrito();
+      }
+
+      btnFinalizar.addEventListener("click", () => {
+        /*Si el Array carrito no está vacio*/
+        if (carrito.length > 0) {
+          alert("¡Gracias por tu compra!");
+          /*limpio todo el carrito y el localStorage para empezar de nuevo*/
+          carrito = [];
+          localStorage.removeItem("carrito");
+          mostrarCarrito();
+        } else {
+          /*Si el Array carrito está vacio*/
+          alert("El carrito está vacío.");
+        }
+      });
+
+      mostrarCarrito();
+
+      const menuToggle = document.querySelector(".menu-toggle");
+      const navbar = document.querySelector(".navbar");
+      const closeNavbar = document.querySelector(".close-navbar");
+
+      menuToggle.addEventListener("click", () => {
+        navbar.classList.toggle("open");
+      });
+
+      closeNavbar.addEventListener("click", () => {
+        navbar.classList.remove("open");
+      });
+    </script>
+  </body>
 </html>

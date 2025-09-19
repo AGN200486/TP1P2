@@ -1,86 +1,99 @@
 <!DOCTYPE html>
 <html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/images/logoHotwheels.ico" />
+    <link rel="stylesheet" href="/styles/estilos.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <title>Hot Wheels</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="..//TP1P2/images/logoHotwheels.ico">
-  <link rel="stylesheet" href="..//TP1P2/estilos.css">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-  <title>Hot Wheels</title>
-</head>
-
-<body>
-  <div class="recuadro">
-    <img src="..//TP1P2/images/recuadro.png" alt="recuadro">
-  </div>
-  <header>
-    <a href="..//TP1P2/pagina1.html" class="logo">
-      <img src="..//TP1P2/images/logoHotwheels2.jpg" alt="logoHotwheels">
-    </a>
-    <a href="..//TP1P2/pagina2.html" style="text-decoration: none;">Modelos </a>
-    <a href="pagina3.html" style="text-decoration: none;">Formulario </a>
-    <a href="..//TP1P2/pagina4.html" style="text-decoration: none;">Carrito </a>
-  </header>
-  <main>
-    <h1>Formulario</h1>
-    <form id="registroForm" novalidate>
-      <div class="form-group">
-        <label for="name">Nombre Completo *</label>
-        <input id="name" type="text" required>
-        <span class="estado-icon"></span>
-        <small class="errorMens"></small>
-      </div>
-
-      <div class="form-group">
-        <label for="email">Email *</label>
-        <input type="email" id="email" required>
-        <span class="estado-icon"></span>
-        <small class="errorMens"></small>
-      </div>
-
-      <div class="form-group">
-        <label for="telefono">Teléfono *</label>
-        <input type="tel" id="telefono" required>
-        <span class="estado-icon"></span>
-        <small class="errorMens"></small>
-      </div>
-
-      <div class="form-group">
-        <label for="fechaNacimiento">Fecha de nacimiento *</label>
-        <input type="date" id="fechaNacimiento" required>
-        <span class="estado-icon"></span>
-        <small class="errorMens"></small>
-      </div>
-
-      <div id="genero" class="form-group">
-        <label>Género *</label>
-        <div>
-          <label><input type="radio" name="genero" value="Masculino" required> Masculino</label>
-          <label><input type="radio" name="genero" value="Femenino" required> Femenino</label>
+  <body>
+    <div class="recuadro">
+      <img src="/images/recuadro.png" alt="recuadro" />
+    </div>
+    <header>
+      <a href="/pagina1.html" class="logo">
+        <img src="/images/logoHotwheels2.jpg" alt="logoHotwheels" />
+      </a>
+      <button class="menu-toggle" aria-label="Abrir menú">&#9776;</button>
+      <nav class="navbar">
+        <button class="close-navbar" aria-label="Cerrar menú">&rarr;</button>
+        <a href="/pagina2.html">Modelos</a>
+        <a href="/pagina3.html">Formulario</a>
+        <a href="/pagina4.html">Carrito</a>
+      </nav>
+    </header>
+    <main>
+      <h1>Formulario</h1>
+      <form id="registroForm" novalidate>
+        <div class="form-group">
+          <label for="name">Nombre Completo *</label>
+          <input id="name" type="text" required />
+          <span class="estado-icon"></span>
+          <small class="errorMens"></small>
         </div>
-        <span class="estado-icon"></span>
-        <small class="errorMens"></small>
-      </div>
 
-      <div class="form-group">
-        <label for="pais">País *</label>
-        <select id="pais" required>
-          <option value="">Seleccione...</option>
-          <option value="Argentina">Argentina</option>
-          <option value="México">México</option>
-          <option value="España">España</option>
-        </select>
-        <span class="estado-icon"></span>
-        <small class="errorMens"></small>
+        <div class="form-group">
+          <label for="email">Email *</label>
+          <input type="email" id="email" required />
+          <span class="estado-icon"></span>
+          <small class="errorMens"></small>
+        </div>
 
-      </div>
-      <div class="btn_container">
-        <button class="btn" type="submit">Enviar</button>
-      </div>
-    </form>
-  </main>
-  <script src="..//TP1P2/js/javascript.js"></script>
-</body>
+        <div class="form-group">
+          <label for="telefono">Teléfono *</label>
+          <input type="tel" id="telefono" required />
+          <span class="estado-icon"></span>
+          <small class="errorMens"></small>
+        </div>
 
+        <div class="form-group">
+          <label for="fechaNacimiento">Fecha de nacimiento *</label>
+          <input type="date" id="fechaNacimiento" required />
+          <span class="estado-icon"></span>
+          <small class="errorMens"></small>
+        </div>
+
+        <div id="genero" class="form-group">
+          <label>Género *</label>
+          <div>
+            <label
+              ><input type="radio" name="genero" value="Masculino" required />
+              Masculino</label
+            >
+            <label
+              ><input type="radio" name="genero" value="Femenino" required />
+              Femenino</label
+            >
+          </div>
+          <span class="estado-icon"></span>
+          <small class="errorMens"></small>
+        </div>
+
+        <div class="form-group">
+          <label for="pais">País *</label>
+          <select id="pais" required>
+            <option value="">Seleccione...</option>
+            <option value="Argentina">Argentina</option>
+            <option value="México">México</option>
+            <option value="España">España</option>
+          </select>
+          <span class="estado-icon"></span>
+          <small class="errorMens"></small>
+        </div>
+        <div class="btn_container">
+          <button class="btn" type="submit">Enviar</button>
+        </div>
+      </form>
+    </main>
+    <footer class="footer-persistente">
+      © 2025 Dream Team. Todos los derechos reservados.
+    </footer>
+    <script src="/js/javascript.js"></script>
+  </body>
 </html>
